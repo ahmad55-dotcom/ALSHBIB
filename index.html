@@ -42,12 +42,34 @@
 </head>
 <body class="text-slate-800 antialiased selection:bg-amber-100 selection:text-amber-900">
 
+    <!-- SVG Embedded Logo Template -->
+    <svg style="display:none;">
+        <defs>
+            <g id="alshbib-logo-svg">
+                <svg viewBox="0 0 400 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M190 40 L200 10 L210 40 Z" fill="#FFB800"/>
+                    <path d="M150 55 L130 30 L160 45 Z" fill="#FFB800"/>
+                    <path d="M230 45 L260 30 L240 55 Z" fill="#FFB800"/>
+                    <path d="M125 90 L95 80 L120 100 Z" fill="#FFB800"/>
+                    <path d="M255 100 L280 80 L250 90 Z" fill="#FFB800"/>
+                    <circle cx="185" cy="100" r="38" fill="#FF7A00"/>
+                    <circle cx="185" cy="100" r="28" fill="#FFB800"/>
+                    <path d="M210 100 L245 40 L280 40 L245 100 Z" fill="#0B4B8B"/>
+                    <path d="M175 120 L210 120 L195 185 L160 185 Z" fill="#0B4B8B"/>
+                    <path d="M220 120 L255 120 L240 185 L205 185 Z" fill="#0B4B8B"/>
+                    <text x="200" y="235" font-family="'Tajawal', sans-serif" font-weight="900" font-size="46" fill="#062B52" text-anchor="middle" font-style="italic">ALSHBIB</text>
+                    <text x="200" y="265" font-family="'Tajawal', sans-serif" font-weight="700" font-size="16" fill="#FFB800" text-anchor="middle">Smart Choices for a Better Future</text>
+                </svg>
+            </g>
+        </defs>
+    </svg>
+
     <!-- Header / Navbar -->
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="p-1 rounded-2xl bg-white shadow-sm border border-amber-300/40">
-                    <img src="logo.jpg" alt="ALSHBIB Logo" id="mainHeaderLogo" class="h-12 w-auto object-contain rounded-xl logo-glow">
+                <div class="p-1 rounded-2xl bg-white shadow-sm border border-amber-300/40 w-16 h-12 flex items-center justify-center">
+                    <svg class="w-full h-full logo-glow"><use href="#alshbib-logo-svg"/></svg>
                 </div>
                 <div>
                     <h1 class="text-xl font-black tracking-tight text-brand-darkBlue leading-none">الشبيب <span class="text-amber-500">ALSHBIB</span></h1>
@@ -95,8 +117,8 @@
                     </div>
                 </div>
                 <div class="hidden md:flex justify-center">
-                    <div class="p-4 bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl">
-                        <img src="logo.jpg" alt="ALSHBIB Solar Logo" id="heroLogo" class="rounded-2xl max-h-72 w-auto logo-glow object-contain bg-white p-4">
+                    <div class="p-6 bg-white rounded-3xl border border-white/20 shadow-2xl w-80 h-64 flex items-center justify-center">
+                        <svg class="w-full h-full logo-glow"><use href="#alshbib-logo-svg"/></svg>
                     </div>
                 </div>
             </div>
@@ -192,7 +214,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="space-y-3">
                 <div class="flex items-center gap-3">
-                    <img src="logo.jpg" alt="ALSHBIB Logo" id="footerLogo" class="h-10 w-auto rounded-lg bg-white p-1 logo-glow">
+                    <div class="w-10 h-8 rounded-lg bg-white p-0.5 flex items-center justify-center logo-glow">
+                        <svg class="w-full h-full"><use href="#alshbib-logo-svg"/></svg>
+                    </div>
                     <h3 class="text-white font-bold text-base">مؤسسة الشبيب للطاقة الشمسية</h3>
                 </div>
                 <p class="text-xs leading-relaxed text-slate-400">خيارات ذكية لمستقبل أفضل. توريد وتركيب كافة أنظمة الطاقة الشمسية ومعدات MUST الأصلية مع الضمان الفعلي.</p>
@@ -218,10 +242,10 @@
         function getProducts() {
             const saved = localStorage.getItem('alshbib_products');
             return saved ? JSON.parse(saved) : [
-                { id: 1, name: "أنفرتر MUST هجين 5.5 كيلو واط (5500W 48V)", category: "inverter", originalPrice: 480, discountPrice: 420, image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=600&q=80", badge: "الأكثر مبيعاً" },
-                { id: 2, name: "لوح طاقة شمسية 580 واط N-Type Monocrystalline", category: "panel", originalPrice: 110, discountPrice: 95, image: "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=600&q=80", badge: "كفاءة عالية" },
-                { id: 3, name: "بطارية ليتيوم MUST LiFePO4 100Ah 48V", category: "battery", originalPrice: 1350, discountPrice: 1190, image: "https://images.unsplash.com/photo-1558441719-670b357029bc?auto=format&fit=crop&w=600&q=80", badge: "ضمان 5 سنوات" },
-                { id: 4, name: "أنفرتر MUST ذكي 3 كيلو واط (3000W 24V)", category: "inverter", originalPrice: 320, discountPrice: 285, image: "https://images.unsplash.com/photo-1548611716-30029825968b?auto=format&fit=crop&w=600&q=80", badge: "عرض خاص" }
+                { id: 1, name: "أنفرتر MUST هجين 5.5 كيلو واط (5500W 48V)", category: "inverter", originalPrice: 480, discountPrice: 420, details: "أنفرتر هجين عالي الكفاءة، يدعم بطاريات 48V مع ضمان حقيقي.", image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=600&q=80", badge: "الأكثر مبيعاً" },
+                { id: 2, name: "لوح طاقة شمسية 580 واط N-Type Monocrystalline", category: "panel", originalPrice: 110, discountPrice: 95, details: "لوح أحادي البلورة بتقنية N-Type الحديثة لتحمل درجات الحرارة العالية.", image: "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=600&q=80", badge: "كفاءة عالية" },
+                { id: 3, name: "بطارية ليتيوم MUST LiFePO4 100Ah 48V", category: "battery", originalPrice: 1350, discountPrice: 1190, details: "بطارية ليتيوم حديد فوسفات تدعم آلاف دورات الشحن مع نظام حماية ذكي.", image: "https://images.unsplash.com/photo-1558441719-670b357029bc?auto=format&fit=crop&w=600&q=80", badge: "ضمان 5 سنوات" },
+                { id: 4, name: "أنفرتر MUST ذكي 3 كيلو واط (3000W 24V)", category: "inverter", originalPrice: 320, discountPrice: 285, details: "مناسب للمنازل الصغيرة، شاحن منظومة مدمج عالي الكفاءة.", image: "https://images.unsplash.com/photo-1548611716-30029825968b?auto=format&fit=crop&w=600&q=80", badge: "عرض خاص" }
             ];
         }
 
@@ -238,7 +262,7 @@
 
             const visible = filtered.slice(0, itemsToShow);
             grid.innerHTML = visible.map(p => {
-                const msg = encodeURIComponent(`مرحباً مؤسسة الشبيب، أرغب بالاستفسار عن المنتج:\n- الاسم: ${p.name}\n- السعر بعد الخصم: $${p.discountPrice}`);
+                const msg = encodeURIComponent(`مرحباً مؤسسة الشبيب، أرغب بالاستفسار عن المنتج:\n- الاسم: ${p.name}\n- التفاصيل: ${p.details || 'لا توجد تفاصيل إضافية'}\n- السعر بعد الخصم: $${p.discountPrice}`);
                 return `
                     <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                         <div>
@@ -246,7 +270,8 @@
                                 <img src="${p.image}" class="w-full h-44 object-cover rounded-xl">
                                 ${p.badge ? `<span class="absolute top-2 right-2 bg-amber-500 text-slate-950 font-black text-[10px] px-2.5 py-1 rounded-md">${p.badge}</span>` : ''}
                             </div>
-                            <h3 class="font-bold text-slate-900 text-sm mb-2 line-clamp-2">${p.name}</h3>
+                            <h3 class="font-bold text-slate-900 text-sm mb-1 line-clamp-2">${p.name}</h3>
+                            <p class="text-[11px] text-slate-500 mb-3 line-clamp-2">${p.details || ''}</p>
                             <div class="flex items-center gap-2 mb-4">
                                 <span class="text-lg font-extrabold text-brand-blue">$${p.discountPrice}</span>
                                 ${p.originalPrice > p.discountPrice ? `<span class="text-xs text-slate-400 line-through">$${p.originalPrice}</span>` : ''}
