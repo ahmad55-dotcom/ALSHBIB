@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Firebase SDKs (Compat) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -27,10 +32,6 @@
         .logo-glow {
             filter: drop-shadow(0 0 8px rgba(255, 184, 0, 0.7)) drop-shadow(0 0 16px rgba(11, 75, 139, 0.4));
             transition: all 0.3s ease;
-        }
-        .logo-glow:hover {
-            filter: drop-shadow(0 0 14px rgba(255, 184, 0, 0.95)) drop-shadow(0 0 25px rgba(11, 75, 139, 0.7));
-            transform: scale(1.03);
         }
         .pulse-whatsapp { animation: pulse-green 2s infinite; }
         @keyframes pulse-green {
@@ -140,7 +141,9 @@
             </div>
         </div>
 
-        <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="col-span-full text-center py-12 text-slate-400 font-bold text-sm">جاري تحميل المنتجات الحية...</div>
+        </div>
 
         <div id="loadMoreContainer" class="text-center mt-12 hidden">
             <button onclick="loadMoreProducts()" class="bg-white border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white font-bold px-8 py-3 rounded-xl transition shadow-sm text-sm inline-flex items-center gap-2">
@@ -235,30 +238,48 @@
     </footer>
 
     <script>
+        // ======= إعدادات Firebase الخاصة بمشروعك =======
+        const firebaseConfig = {
+            apiKey: "AIzaSyBslRluFphGEHmrLkSrzIgFfR57Xwmc2LE",
+            authDomain: "wallet-dcd19.firebaseapp.com",
+            projectId: "wallet-dcd19",
+            storageBucket: "wallet-dcd19.firebasestorage.app",
+            messagingSenderId: "823442052558",
+            appId: "1:823442052558:web:1fcc4e3fa08efee31c879f",
+            measurementId: "G-28XBDH6MKQ"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
         const phone = "905368414835";
+        let allProducts = [];
         let currentCategory = 'all';
         let itemsToShow = 4;
 
-        function getProducts() {
-            const saved = localStorage.getItem('alshbib_products');
-            return saved ? JSON.parse(saved) : [
-                { id: 1, name: "أنفرتر MUST هجين 5.5 كيلو واط (5500W 48V)", category: "inverter", originalPrice: 480, discountPrice: 420, details: "أنفرتر هجين عالي الكفاءة، يدعم بطاريات 48V مع ضمان حقيقي.", image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=600&q=80", badge: "الأكثر مبيعاً" },
-                { id: 2, name: "لوح طاقة شمسية 580 واط N-Type Monocrystalline", category: "panel", originalPrice: 110, discountPrice: 95, details: "لوح أحادي البلورة بتقنية N-Type الحديثة لتحمل درجات الحرارة العالية.", image: "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=600&q=80", badge: "كفاءة عالية" },
-                { id: 3, name: "بطارية ليتيوم MUST LiFePO4 100Ah 48V", category: "battery", originalPrice: 1350, discountPrice: 1190, details: "بطارية ليتيوم حديد فوسفات تدعم آلاف دورات الشحن مع نظام حماية ذكي.", image: "https://images.unsplash.com/photo-1558441719-670b357029bc?auto=format&fit=crop&w=600&q=80", badge: "ضمان 5 سنوات" },
-                { id: 4, name: "أنفرتر MUST ذكي 3 كيلو واط (3000W 24V)", category: "inverter", originalPrice: 320, discountPrice: 285, details: "مناسب للمنازل الصغيرة، شاحن منظومة مدمج عالي الكفاءة.", image: "https://images.unsplash.com/photo-1548611716-30029825968b?auto=format&fit=crop&w=600&q=80", badge: "عرض خاص" }
-            ];
+        function listenToProducts() {
+            db.collection("products").orderBy("createdAt", "desc").onSnapshot(snapshot => {
+                allProducts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                renderProducts();
+            }, error => {
+                console.error("Firestore Error:", error);
+            });
         }
 
         function renderProducts() {
-            const products = getProducts();
             const search = document.getElementById('searchInput').value.toLowerCase();
             const grid = document.getElementById('productsGrid');
 
-            const filtered = products.filter(p => {
+            const filtered = allProducts.filter(p => {
                 const matchCat = currentCategory === 'all' || p.category === currentCategory;
-                const matchSearch = p.name.toLowerCase().includes(search);
+                const matchSearch = p.name ? p.name.toLowerCase().includes(search) : false;
                 return matchCat && matchSearch;
             });
+
+            if(filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400 font-bold text-sm">لا توجد منتجات حالياً في السحابة.</div>`;
+                document.getElementById('loadMoreContainer').classList.add('hidden');
+                return;
+            }
 
             const visible = filtered.slice(0, itemsToShow);
             grid.innerHTML = visible.map(p => {
@@ -268,13 +289,7 @@
                         <div>
                             <div class="relative mb-3">
                                 <img src="${p.image}" class="w-full h-44 object-cover rounded-xl">
-                                ${p.badge ? `<span class="absolute top-2 right-2 bg-amber-500 text-slate-950 font-black text-[10px] px-2.5 py-1 rounded-md">${p.badge}</span>` : ''}
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-sm mb-1 line-clamp-2">${p.name}</h3>
-                            <p class="text-[11px] text-slate-500 mb-3 line-clamp-2">${p.details || ''}</p>
-                            <div class="flex items-center gap-2 mb-4">
-                                <span class="text-lg font-extrabold text-brand-blue">$${p.discountPrice}</span>
-                                ${p.originalPrice > p.discountPrice ? `<span class="text-xs text-slate-400 line-through">$${p.originalPrice}</span>` : ''}
+                                ${p.badge ? `<span class="absolute top-2 right-2 bg-amber-500 text-slate-950 font-black text-[10px] px-2.5 py-1 rounded-md">${p.badge}</span>` : ''} </div> <h3 class="font-bold text-slate-900 text-sm mb-1 line-clamp-2">${p.name}</h3> <p class="text-[11px] text-slate-500 mb-3 line-clamp-2">${p.details \vert{}\vert{} ''}</p> <div class="flex items-center gap-2 mb-4"> <span class="text-lg font-extrabold text-brand-blue">$${p.discountPrice}</span> ${p.originalPrice > p.discountPrice ? `<span class="text-xs text-slate-400 line-through">$${p.originalPrice}</span>` : ''}
                             </div>
                         </div>
                         <a href="https://wa.me/${phone}?text=${msg}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl transition text-xs flex items-center justify-center gap-2 shadow-sm">
@@ -326,7 +341,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            renderProducts();
+            listenToProducts();
             calculateSolar();
         });
     </script>
