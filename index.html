@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>شركة الشبيب | ALSHBIB - أنظمة ومستلزمات الطاقة الشمسية</title>
+    
+    <!-- أيقونات وإعدادات التثبيت على الشاشة الرئيسية (Add to Home Screen) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.jpg">
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="logo.jpg">
+    <link rel="icon" type="image/jpeg" sizes="16x16" href="logo.jpg">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="الشبيب ALSHBIB">
+    <meta name="application-name" content="الشبيب ALSHBIB">
+    <meta name="theme-color" content="#0B4B8B">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -102,7 +114,7 @@
             </a>
         </div>
 
-        <!-- شريط الإعلان (تحت الهيدر الذي يحتوي على الاسم واللوغو والتواصل) -->
+        <!-- شريط الإعلان (تحت الهيدر الرئيسي) -->
         <div class="bg-amber-500 text-slate-950 font-black text-center py-2.5 text-xs sm:text-sm px-4 shadow-inner flex items-center justify-center gap-2">
             <i class="fas fa-bullhorn text-base"></i>
             <span>مستعدون لتنفيذ كافة المشاريع الصناعية والتجارية والمنزلية</span>
@@ -427,13 +439,11 @@
 
             const visible = filtered.slice(0, itemsToShow);
             grid.innerHTML = visible.map(p => {
-                // جلب الصورة الرئيسية أو أول صورة من المصفوفة
                 const mainImg = p.image || (p.images && p.images.length > 0 ? p.images[0] : 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=600&q=80');
                 
                 return `
                     <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                         <div>
-                            <!-- تم جعل الصورة قابلة للنقر لعرض التفاصيل والصور المتعددة -->
                             <div class="relative mb-3 cursor-pointer group" onclick="openDetailsModal('${p.id}')">
                                 <img src="${mainImg}" class="w-full h-44 object-cover rounded-xl group-hover:opacity-95 transition">
                                 <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition rounded-xl flex items-center justify-center">
@@ -465,27 +475,23 @@
             else loadMoreBtn.classList.add('hidden');
         }
 
-        // نافذة عرض التفاصيل الكاملة مع معرض الصور المتعددة
         function openDetailsModal(productId) {
             const p = allProducts.find(item => item.id === productId);
             if (!p) return;
 
-            // استخراج قائمة الصور (سواء كانت مصفوفة images أو صورة مفردة image)
             const imagesList = p.images && p.images.length > 0 ? p.images : [p.image || 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=600&q=80'];
 
             const content = document.getElementById('modalDetailsContent');
             content.innerHTML = `
-                <!-- الصورة الرئيسية المعروضة حالياً -->
                 <div class="relative">
                     <img id="mainModalImage" src="${imagesList[0]}" class="w-full h-64 sm:h-72 object-cover rounded-2xl border shadow-md transition-all duration-300">
                 </div>
                 
-                <!-- مصغرات الصور المتعددة (إذا وُجد أكثر من صورة) -->
                 ${imagesList.length > 1 ? `
                     <div>
                         <p class="text-[11px] font-bold text-slate-500 mb-1.5">صور المنتج (${imagesList.length}): اضغط على الصورة للعرض</p>
                         <div class="flex gap-2 overflow-x-auto py-1">
-                            ${imagesList.map((img, idx) => `
+                            ${imagesList.map((img) => `
                                 <img src="${img}" onclick="document.getElementById('mainModalImage').src='${img}'" class="w-16 h-16 object-cover rounded-xl border-2 cursor-pointer hover:border-brand-blue hover:scale-105 transition flex-shrink-0 shadow-sm">
                             `).join('')}
                         </div>
