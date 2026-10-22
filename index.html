@@ -43,13 +43,13 @@
 </head>
 <body class="text-slate-800 antialiased selection:bg-amber-100 selection:text-amber-900">
 
-    <!-- Announcement Bar -->
+    <!-- شريط الإعلان العلوي -->
     <div class="bg-amber-500 text-slate-950 font-black text-center py-2.5 text-xs sm:text-sm px-4 shadow-md flex items-center justify-center gap-2 z-50 relative">
         <i class="fas fa-bullhorn text-base"></i>
         <span>مستعدون لتنفيذ كافة المشاريع الصناعية والتجارية والمنزلية</span>
     </div>
 
-    <!-- Branches Quick Bar -->
+    <!-- شريط الفروع والتواصل -->
     <div class="bg-slate-900 text-white py-2.5 px-4 border-b border-slate-800 text-xs z-40 relative">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-3 sm:gap-6">
             <span class="font-bold text-amber-400 flex items-center gap-1.5"><i class="fas fa-code-branch"></i> تواصل مع فروعنا:</span>
@@ -159,10 +159,10 @@
                 <input type="text" id="searchInput" oninput="renderProducts()" placeholder="ابحث عن أنفرتر، لوح شمسي، بطارية..." class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 pr-10 text-sm focus:outline-none focus:border-brand-blue shadow-sm">
                 <i class="fas fa-search absolute left-3 top-3.5 text-slate-400"></i>
             </div>
-            <!-- Category Filters with Active Styling -->
+            <!-- Category Filters -->
             <div id="categoryFilters" class="flex flex-wrap gap-2 w-full md:w-auto">
                 <button onclick="setCategory('all', this)" class="cat-btn bg-brand-blue text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">الكل</button>
-                <button onclick="setCategory('inverter', this)" class="cat-btn bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">أنفرترات </button>
+                <button onclick="setCategory('inverter', this)" class="cat-btn bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">أنفرترات MUST</button>
                 <button onclick="setCategory('panel', this)" class="cat-btn bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">ألواح شمسية</button>
                 <button onclick="setCategory('battery', this)" class="cat-btn bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">بطاريات</button>
             </div>
@@ -180,8 +180,66 @@
         </div>
     </main>
 
+    <!-- Modal نافذة اختيار الفرع للاستفسار -->
+    <div id="branchModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeBranchModal()" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600 bg-slate-100 hover:bg-slate-200 w-8 h-8 rounded-full flex items-center justify-center transition">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-xl">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3 class="font-extrabold text-slate-900 text-lg">اختر الفرع للاستفسار</h3>
+                <p id="modalProductName" class="text-xs text-brand-blue font-bold mt-1 line-clamp-1"></p>
+            </div>
+
+            <div class="space-y-3">
+                <button onclick="sendProductToBranch('963969018173')" class="w-full p-3.5 bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 rounded-2xl flex items-center justify-between transition group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold text-sm shadow-sm group-hover:scale-105 transition">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="text-right">
+                            <h4 class="font-bold text-slate-900 text-sm">فرع سرمدا</h4>
+                            <p class="text-[11px] text-slate-500 dir-ltr">+963 969 018 173</p>
+                        </div>
+                    </div>
+                    <i class="fab fa-whatsapp text-emerald-600 text-xl"></i>
+                </button>
+
+                <button onclick="sendProductToBranch('963952333147')" class="w-full p-3.5 bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 rounded-2xl flex items-center justify-between transition group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold text-sm shadow-sm group-hover:scale-105 transition">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="text-right">
+                            <h4 class="font-bold text-slate-900 text-sm">فرع داريا</h4>
+                            <p class="text-[11px] text-slate-500 dir-ltr">+963 952 333 147</p>
+                        </div>
+                    </div>
+                    <i class="fab fa-whatsapp text-emerald-600 text-xl"></i>
+                </button>
+
+                <button onclick="sendProductToBranch('963986574652')" class="w-full p-3.5 bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 rounded-2xl flex items-center justify-between transition group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold text-sm shadow-sm group-hover:scale-105 transition">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="text-right">
+                            <h4 class="font-bold text-slate-900 text-sm">فرع الزبداني</h4>
+                            <p class="text-[11px] text-slate-500 dir-ltr">+963 986 574 652</p>
+                        </div>
+                    </div>
+                    <i class="fab fa-whatsapp text-emerald-600 text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Floating WhatsApp Widget -->
-    <div class="fixed bottom-6 left-6 z-50 flex flex-col items-start gap-3">
+    <div class="fixed bottom-6 left-6 z-40 flex flex-col items-start gap-3">
         <div id="waPopup" class="bg-white rounded-2xl p-3.5 shadow-xl border border-slate-100 max-w-xs flex items-center justify-between gap-3 animate-bounce">
             <div>
                 <h4 class="font-bold text-slate-900 text-xs">ALSHBIB</h4>
@@ -235,10 +293,10 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        const phone = "963986574652";
         let allProducts = [];
         let currentCategory = 'all';
         let itemsToShow = 4;
+        let selectedProductForInquiry = null;
 
         function listenToProducts() {
             db.collection("products").onSnapshot(snapshot => {
@@ -267,8 +325,7 @@
             }
 
             const visible = filtered.slice(0, itemsToShow);
-            grid.innerHTML = visible.map(p => {
-                const msg = encodeURIComponent(`مرحباً شركة الشبيب، أرغب بالاستفسار عن المنتج:\n- الاسم: ${p.name}\n- التفاصيل: ${p.details || 'لا توجد تفاصيل إضافية'}\n- السعر بعد الخصم: $${p.discountPrice}`);
+            grid.innerHTML = visible.map((p, index) => {
                 return `
                     <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                         <div>
@@ -283,10 +340,10 @@
                                 ${p.originalPrice > p.discountPrice ? `<span class="text-xs text-slate-400 line-through">$${p.originalPrice}</span>` : ''}
                             </div>
                         </div>
-                        <a href="https://wa.me/${phone}?text=${msg}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl transition text-xs flex items-center justify-center gap-2 shadow-sm">
+                        <button onclick="openBranchModal('${p.id}')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl transition text-xs flex items-center justify-center gap-2 shadow-sm">
                             <i class="fab fa-whatsapp text-sm"></i>
                             <span>استفسار عبر الواتساب</span>
-                        </a>
+                        </button>
                     </div>
                 `;
             }).join('');
@@ -296,20 +353,42 @@
             else loadMoreBtn.classList.add('hidden');
         }
 
+        // إدارة النافذة المنبثقة للاستفسار عبر الأفرع
+        function openBranchModal(productId) {
+            selectedProductForInquiry = allProducts.find(p => p.id === productId);
+            if(selectedProductForInquiry) {
+                document.getElementById('modalProductName').innerText = selectedProductForInquiry.name;
+                const modal = document.getElementById('branchModal');
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeBranchModal() {
+            const modal = document.getElementById('branchModal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            selectedProductForInquiry = null;
+        }
+
+        function sendProductToBranch(branchPhone) {
+            if(!selectedProductForInquiry) return;
+            const msg = encodeURIComponent(`مرحباً شركة الشبيب، أرغب بالاستفسار عن المنتج:\n- الاسم: ${selectedProductForInquiry.name}\n- التفاصيل: ${selectedProductForInquiry.details || 'لا توجد تفاصيل إضافية'}\n- السعر: $${selectedProductForInquiry.discountPrice}`);
+            window.open(`https://wa.me/${branchPhone}?text=${msg}`, '_blank');
+            closeBranchModal();
+        }
+
         function loadMoreProducts() { itemsToShow += 4; renderProducts(); }
         
-        // Category Selection with Color Change
         function setCategory(cat, btn) {
             currentCategory = cat;
             itemsToShow = 4;
             
-            // Remove active style from all buttons
             document.querySelectorAll('.cat-btn').forEach(b => {
                 b.classList.remove('bg-brand-blue', 'text-white');
                 b.classList.add('bg-white', 'border', 'border-slate-200', 'text-slate-700');
             });
             
-            // Add active style to clicked button
             if(btn) {
                 btn.classList.remove('bg-white', 'border', 'border-slate-200', 'text-slate-700');
                 btn.classList.add('bg-brand-blue', 'text-white');
