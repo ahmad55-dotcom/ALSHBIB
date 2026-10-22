@@ -33,7 +33,6 @@
             filter: drop-shadow(0 0 8px rgba(255, 184, 0, 0.7)) drop-shadow(0 0 16px rgba(11, 75, 139, 0.4));
             transition: all 0.3s ease;
         }
-        /* تأثير الإنارة الخارجية للأزرار */
         .branch-glow {
             box-shadow: 0 0 15px rgba(16, 185, 129, 0.35), inset 0 0 6px rgba(16, 185, 129, 0.2);
             transition: all 0.3s ease;
@@ -58,12 +57,11 @@
         <span>مستعدون لتنفيذ كافة المشاريع الصناعية والتجارية والمنزلية</span>
     </div>
 
-    <!-- شريط الفروع والتواصل مع إنارة وتصميم راقي للأزرار -->
+    <!-- شريط الفروع والتواصل -->
     <div class="bg-slate-900 text-white py-3 px-4 border-b border-slate-800 text-xs z-40 relative">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-3 sm:gap-6">
             <span class="font-bold text-amber-400 flex items-center gap-1.5"><i class="fas fa-code-branch"></i> تواصل مع فروعنا:</span>
             
-            <!-- فرع سرمدا -->
             <a href="https://wa.me/963969018173" target="_blank" class="branch-glow bg-slate-800 hover:bg-slate-700 px-3.5 py-2 rounded-xl border border-emerald-500/40 flex items-center gap-2.5 transition">
                 <div class="w-7 h-7 bg-emerald-500/20 text-emerald-400 rounded-lg flex items-center justify-center border border-emerald-500/30">
                     <i class="fab fa-whatsapp text-sm"></i>
@@ -74,7 +72,6 @@
                 </div>
             </a>
 
-            <!-- فرع داريا -->
             <a href="https://wa.me/963952333147" target="_blank" class="branch-glow bg-slate-800 hover:bg-slate-700 px-3.5 py-2 rounded-xl border border-emerald-500/40 flex items-center gap-2.5 transition">
                 <div class="w-7 h-7 bg-emerald-500/20 text-emerald-400 rounded-lg flex items-center justify-center border border-emerald-500/30">
                     <i class="fab fa-whatsapp text-sm"></i>
@@ -85,7 +82,6 @@
                 </div>
             </a>
 
-            <!-- فرع الزبداني -->
             <a href="https://wa.me/963986574652" target="_blank" class="branch-glow bg-slate-800 hover:bg-slate-700 px-3.5 py-2 rounded-xl border border-emerald-500/40 flex items-center gap-2.5 transition">
                 <div class="w-7 h-7 bg-emerald-500/20 text-emerald-400 rounded-lg flex items-center justify-center border border-emerald-500/30">
                     <i class="fab fa-whatsapp text-sm"></i>
@@ -124,6 +120,10 @@
     <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3">
+                <!-- زر الشخطات الثلاث القائمة الجانبية -->
+                <button onclick="toggleMobileMenu()" class="text-slate-700 hover:text-brand-blue text-2xl p-2 focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <div class="p-1 rounded-2xl bg-white shadow-sm border border-amber-300/40 w-16 h-12 flex items-center justify-center">
                     <svg class="w-full h-full logo-glow"><use href="#alshbib-logo-svg"/></svg>
                 </div>
@@ -134,8 +134,9 @@
             </div>
 
             <div class="hidden md:flex items-center gap-8 font-semibold text-slate-600 text-sm">
-                <a href="#products" class="hover:text-brand-blue transition">المنتجات والعروض</a>
-                <a href="https://www.facebook.com/share/1DcTKhPZTJ/" target="_blank" class="hover:text-brand-blue transition"><i class="fab fa-facebook text-blue-600"></i> صفحتنا</a>
+                <button onclick="showSection('about')" class="hover:text-brand-blue transition">من نحن والسيرة الذاتية</button>
+                <button onclick="showSection('products')" class="hover:text-brand-blue transition">جميع المنتجات</button>
+                <button onclick="showSection('contact')" class="hover:text-brand-blue transition">وسائل التواصل</button>
             </div>
 
             <a href="https://wa.me/963986574652" target="_blank" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl transition shadow-md text-xs sm:text-sm">
@@ -145,8 +146,79 @@
         </div>
     </header>
 
+    <!-- القائمة الجانبية المنسدلة (الشخطات الثلاث) -->
+    <div id="sideMenu" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden transition-opacity">
+        <div class="bg-slate-900 w-80 h-full p-6 shadow-2xl flex flex-col justify-between border-l border-slate-800">
+            <div>
+                <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-800">
+                    <h3 class="text-amber-400 font-bold text-base">قائمة التنقل</h3>
+                    <button onclick="toggleMobileMenu()" class="text-slate-400 hover:text-white text-lg"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="space-y-4 text-sm font-bold text-slate-200">
+                    <button onclick="toggleMobileMenu(); showSection('about')" class="w-full text-right p-3 rounded-xl bg-slate-800/60 hover:bg-slate-800 flex items-center gap-3 transition">
+                        <i class="fas fa-info-circle text-amber-400"></i> من نحن والسيرة الذاتية
+                    </button>
+                    <button onclick="toggleMobileMenu(); showSection('products')" class="w-full text-right p-3 rounded-xl bg-slate-800/60 hover:bg-slate-800 flex items-center gap-3 transition">
+                        <i class="fas fa-boxes text-amber-400"></i> جميع المنتجات
+                    </button>
+                    <button onclick="toggleMobileMenu(); showSection('contact')" class="w-full text-right p-3 rounded-xl bg-slate-800/60 hover:bg-slate-800 flex items-center gap-3 transition">
+                        <i class="fas fa-headset text-amber-400"></i> وسائل التواصل
+                    </button>
+                </div>
+            </div>
+            <div class="text-xs text-slate-500 text-center border-t border-slate-800 pt-4">
+                شركة الشبيب للطاقة الشمسية © 2026
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم "من نحن والسيرة الذاتية" (متحكم به من لوحة الإدارة) -->
+    <section id="aboutSection" class="max-w-4xl mx-auto px-4 py-16 hidden">
+        <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
+            <h2 class="text-2xl font-black text-brand-darkBlue border-b pb-4">من نحن والسيرة الذاتية للعمل</h2>
+            <div id="aboutContentDisplay" class="space-y-4 text-slate-600 text-sm leading-relaxed">
+                <p>جاري تحميل البيانات...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم "وسائل التواصل" -->
+    <section id="contactSection" class="max-w-4xl mx-auto px-4 py-16 hidden">
+        <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
+            <h2 class="text-2xl font-black text-brand-darkBlue border-b pb-4">وسائل التواصل المعتمدة</h2>
+            <div class="grid sm:grid-cols-3 gap-4">
+                <a href="https://wa.me/963969018173" target="_blank" class="p-4 bg-slate-50 rounded-2xl border flex items-center gap-3 hover:bg-emerald-50 transition">
+                    <i class="fab fa-whatsapp text-emerald-600 text-2xl"></i>
+                    <div>
+                        <div class="font-bold text-xs">فرع سرمدا</div>
+                        <div class="text-[10px] text-slate-500 dir-ltr">+963 969 018 173</div>
+                    </div>
+                </a>
+                <a href="https://wa.me/963952333147" target="_blank" class="p-4 bg-slate-50 rounded-2xl border flex items-center gap-3 hover:bg-emerald-50 transition">
+                    <i class="fab fa-whatsapp text-emerald-600 text-2xl"></i>
+                    <div>
+                        <div class="font-bold text-xs">فرع داريا</div>
+                        <div class="text-[10px] text-slate-500 dir-ltr">+963 952 333 147</div>
+                    </div>
+                </a>
+                <a href="https://wa.me/963986574652" target="_blank" class="p-4 bg-slate-50 rounded-2xl border flex items-center gap-3 hover:bg-emerald-50 transition">
+                    <i class="fab fa-whatsapp text-emerald-600 text-2xl"></i>
+                    <div>
+                        <div class="font-bold text-xs">فرع الزبداني</div>
+                        <div class="text-[10px] text-slate-500 dir-ltr">+963 986 574 652</div>
+                    </div>
+                </a>
+            </div>
+            <div class="pt-4 border-t">
+                <a href="https://www.facebook.com/share/1DcTKhPZTJ/" target="_blank" class="inline-flex items-center gap-2 text-blue-600 font-bold text-xs">
+                    <i class="fab fa-facebook text-base"></i> صفحتنا الرسمية على فيسبوك
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-brand-darkBlue via-brand-blue to-slate-900 text-white py-16 md:py-24 overflow-hidden">
+    <section id="heroSection" class="relative bg-gradient-to-br from-brand-darkBlue via-brand-blue to-slate-900 text-white py-16 md:py-24 overflow-hidden">
         <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-10"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -177,7 +249,7 @@
     </section>
 
     <!-- Main Products Section -->
-    <main id="products" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main id="productsSection" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
             <div class="w-full md:w-96 relative">
                 <input type="text" id="searchInput" oninput="renderProducts()" placeholder="ابحث عن أنفرتر، لوح شمسي، بطارية..." class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 pr-10 text-sm focus:outline-none focus:border-brand-blue shadow-sm">
@@ -204,26 +276,37 @@
         </div>
     </main>
 
-    <!-- Modal نافذة اختيار الفرع للاستفسار مع أزرار مضيئة وأنيقة -->
+    <!-- Modal نافذة عرض التفاصيل الكاملة للمنتج -->
+    <div id="detailsModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeDetailsModal()" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600 bg-slate-100 w-8 h-8 rounded-full flex items-center justify-center">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="modalDetailsContent" class="space-y-4">
+                <!-- تعبئة ديناميكية -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal نافذة اختيار الفرع للاستفسار -->
     <div id="branchModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 relative animate-in fade-in zoom-in duration-200">
-            <button onclick="closeBranchModal()" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600 bg-slate-100 hover:bg-slate-200 w-8 h-8 rounded-full flex items-center justify-center transition">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 relative">
+            <button onclick="closeBranchModal()" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600 bg-slate-100 w-8 h-8 rounded-full flex items-center justify-center">
                 <i class="fas fa-times"></i>
             </button>
             
             <div class="text-center mb-6">
-                <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl">
                     <i class="fab fa-whatsapp"></i>
                 </div>
                 <h3 class="font-extrabold text-slate-900 text-lg">اختر الفرع المناسب للاستفسار</h3>
-                <p id="modalProductName" class="text-xs text-brand-blue font-bold mt-1.5 line-clamp-1 bg-blue-50 py-1.5 px-3 rounded-lg border border-blue-100"></p>
+                <p id="modalProductName" class="text-xs text-brand-blue font-bold mt-1.5 line-clamp-1 bg-blue-50 py-1.5 px-3 rounded-lg"></p>
             </div>
 
             <div class="space-y-3">
-                <!-- فرع سرمدا -->
-                <button onclick="sendProductToBranch('963969018173')" class="w-full p-3.5 bg-slate-900 hover:bg-slate-800 text-white border border-emerald-500/50 rounded-2xl flex items-center justify-between transition group branch-glow">
+                <button onclick="sendProductToBranch('963969018173')" class="w-full p-3.5 bg-slate-900 hover:bg-slate-800 text-white border border-emerald-500/50 rounded-2xl flex items-center justify-between transition branch-glow">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold text-base shadow-md group-hover:scale-105 transition">
+                        <div class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold text-base">
                             <i class="fab fa-whatsapp"></i>
                         </div>
                         <div class="text-right">
@@ -231,13 +314,12 @@
                             <p class="text-[11px] text-slate-300 dir-ltr">+963 969 018 173</p>
                         </div>
                     </div>
-                    <span class="text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-xl font-bold group-hover:bg-emerald-500 transition">مراسلة</span>
+                    <span class="text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-xl font-bold">مراسلة</span>
                 </button>
 
-                <!-- فرع داريا -->
-                <button onclick="sendProductToBranch('963952333147')" class="w-full p-3.5 bg-slate-900 hover:bg-slate-800 text-white border border-emerald-500/50 rounded-2xl flex items-center justify-between transition group branch-glow">
+                <button onclick="sendProductToBranch('963952333147')" class="w-full p-3.5 bg-slate-900 hover:bg-slate-800 text-white border border-emerald-500/50 rounded-2xl flex items-center justify-between transition branch-glow">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold text-base shadow-md group-hover:scale-105 transition">
+                        <div class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold text-base">
                             <i class="fab fa-whatsapp"></i>
                         </div>
                         <div class="text-right">
@@ -245,13 +327,12 @@
                             <p class="text-[11px] text-slate-300 dir-ltr">+963 952 333 147</p>
                         </div>
                     </div>
-                    <span class="text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-xl font-bold group-hover:bg-emerald-500 transition">مراسلة</span>
+                    <span class="text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-xl font-bold">مراسلة</span>
                 </button>
 
-                <!-- فرع الزبداني -->
-                <button onclick="sendProductToBranch('963986574652')" class="w-full p-3.5 bg-slate-900 hover:bg-slate-800 text-white border border-emerald-500/50 rounded-2xl flex items-center justify-between transition group branch-glow">
+                <button onclick="sendProductToBranch('963986574652')" class="w-full p-3.5 bg-slate-900 hover:bg-slate-800 text-white border border-emerald-500/50 rounded-2xl flex items-center justify-between transition branch-glow">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold text-base shadow-md group-hover:scale-105 transition">
+                        <div class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold text-base">
                             <i class="fab fa-whatsapp"></i>
                         </div>
                         <div class="text-right">
@@ -259,7 +340,7 @@
                             <p class="text-[11px] text-slate-300 dir-ltr">+963 986 574 652</p>
                         </div>
                     </div>
-                    <span class="text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-xl font-bold group-hover:bg-emerald-500 transition">مراسلة</span>
+                    <span class="text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-xl font-bold">مراسلة</span>
                 </button>
             </div>
         </div>
@@ -267,13 +348,6 @@
 
     <!-- Floating WhatsApp Widget -->
     <div class="fixed bottom-6 left-6 z-40 flex flex-col items-start gap-3">
-        <div id="waPopup" class="bg-white rounded-2xl p-3.5 shadow-xl border border-slate-100 max-w-xs flex items-center justify-between gap-3 animate-bounce">
-            <div>
-                <h4 class="font-bold text-slate-900 text-xs">ALSHBIB</h4>
-                <p class="text-[11px] text-slate-500 font-medium">تحدث معنا مباشرة عبر واتساب</p>
-            </div>
-            <button onclick="document.getElementById('waPopup').remove()" class="text-slate-400 hover:text-slate-600 text-xs">✕</button>
-        </div>
         <a href="https://wa.me/963986574652" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl text-2xl pulse-whatsapp transition">
             <i class="fab fa-whatsapp"></i>
         </a>
@@ -297,7 +371,6 @@
                     <li class="flex items-center gap-2"><i class="fab fa-whatsapp text-emerald-400"></i> <a href="https://wa.me/963969018173" target="_blank" class="hover:text-white">فرع سرمدا: +963 969 018 173</a></li>
                     <li class="flex items-center gap-2"><i class="fab fa-whatsapp text-emerald-400"></i> <a href="https://wa.me/963952333147" target="_blank" class="hover:text-white">فرع داريا: +963 952 333 147</a></li>
                     <li class="flex items-center gap-2"><i class="fab fa-whatsapp text-emerald-400"></i> <a href="https://wa.me/963986574652" target="_blank" class="hover:text-white">فرع الزبداني: +963 986 574 652</a></li>
-                    <li class="flex items-center gap-2"><i class="fab fa-facebook text-blue-400"></i> <a href="https://www.facebook.com/share/1DcTKhPZTJ/" target="_blank" class="hover:text-white">صفحتنا الرسمية على فيسبوك</a></li>
                 </ul>
             </div>
             <div class="text-xs text-slate-500">
@@ -307,7 +380,6 @@
     </footer>
 
     <script>
-        // ======= إعدادات Firebase الخاصة بمشروعك =======
         const firebaseConfig = {
             apiKey: "AIzaSyBslRluFphGEHmrLkSrzIgFfR57Xwmc2LE",
             authDomain: "wallet-dcd19.firebaseapp.com",
@@ -325,13 +397,52 @@
         let itemsToShow = 4;
         let selectedProductForInquiry = null;
 
+        function toggleMobileMenu() {
+            const menu = document.getElementById('sideMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function showSection(sec) {
+            const hero = document.getElementById('heroSection');
+            const products = document.getElementById('productsSection');
+            const about = document.getElementById('aboutSection');
+            const contact = document.getElementById('contactSection');
+
+            hero.classList.add('hidden');
+            products.classList.add('hidden');
+            about.classList.add('hidden');
+            contact.classList.add('hidden');
+
+            if (sec === 'products') {
+                hero.classList.remove('hidden');
+                products.classList.remove('hidden');
+            } else if (sec === 'about') {
+                about.classList.remove('hidden');
+                loadAboutData();
+            } else if (sec === 'contact') {
+                contact.classList.remove('hidden');
+            }
+        }
+
+        function loadAboutData() {
+            db.collection("settings").doc("about").get().then(doc => {
+                const display = document.getElementById('aboutContentDisplay');
+                if (doc.exists && doc.data().content) {
+                    const data = doc.data();
+                    display.innerHTML = `
+                        ${data.image ? `<img src="${data.image}" class="w-full h-64 object-cover rounded-2xl mb-4 border">` : ''}
+                        <div class="whitespace-pre-line text-slate-700">${data.content}</div>
+                    `;
+                } else {
+                    display.innerHTML = `<p class="text-slate-400">لم يتم إضافة محتوى "من نحن والسيرة الذاتية" من لوحة التحكم بعد.</p>`;
+                }
+            });
+        }
+
         function listenToProducts() {
             db.collection("products").onSnapshot(snapshot => {
                 allProducts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 renderProducts();
-            }, error => {
-                console.error("Firestore Error:", error);
-                document.getElementById('productsGrid').innerHTML = `<div class="col-span-full text-center py-12 text-red-500 font-bold text-sm">خطأ في الاتصال بقاعدة البيانات السحابية.</div>`;
             });
         }
 
@@ -346,13 +457,13 @@
             });
 
             if(filtered.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500 font-bold text-sm bg-white rounded-2xl border border-slate-100 shadow-sm p-8">لا توجد منتجات مضافة في هذا التصنيف حالياً. قم بإضافة منتجات من لوحة التحكم!</div>`;
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500 font-bold text-sm bg-white rounded-2xl border p-8">لا توجد منتجات مضافة حالياً.</div>`;
                 document.getElementById('loadMoreContainer').classList.add('hidden');
                 return;
             }
 
             const visible = filtered.slice(0, itemsToShow);
-            grid.innerHTML = visible.map((p, index) => {
+            grid.innerHTML = visible.map(p => {
                 return `
                     <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                         <div>
@@ -367,10 +478,14 @@
                                 ${p.originalPrice > p.discountPrice ? `<span class="text-xs text-slate-400 line-through">$${p.originalPrice}</span>` : ''}
                             </div>
                         </div>
-                        <button onclick="openBranchModal('${p.id}')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl transition text-xs flex items-center justify-center gap-2 shadow-sm branch-glow">
-                            <i class="fab fa-whatsapp text-sm"></i>
-                            <span>استفسار عبر الواتساب</span>
-                        </button>
+                        <div class="flex items-center gap-2">
+                            <button onclick="openDetailsModal('${p.id}')" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-2.5 rounded-xl transition text-xs flex items-center justify-center gap-1">
+                                <i class="fas fa-info-circle text-amber-500"></i> عرض التفاصيل
+                            </button>
+                            <button onclick="openBranchModal('${p.id}')" class="bg-emerald-600 hover:bg-emerald-700 text-white w-10 h-10 rounded-xl flex items-center justify-center transition shadow-sm branch-glow" title="تواصل واتساب">
+                                <i class="fab fa-whatsapp text-base"></i>
+                            </button>
+                        </div>
                     </div>
                 `;
             }).join('');
@@ -380,7 +495,35 @@
             else loadMoreBtn.classList.add('hidden');
         }
 
-        // إدارة النافذة المنبثقة للاستفسار عبر الأفرع
+        function openDetailsModal(productId) {
+            const p = allProducts.find(item => item.id === productId);
+            if (!p) return;
+            const content = document.getElementById('modalDetailsContent');
+            content.innerHTML = `
+                <img src="${p.image}" class="w-full h-60 object-cover rounded-2xl border">
+                <h3 class="text-lg font-bold text-slate-900">${p.name}</h3>
+                <div class="flex items-center gap-2">
+                    <span class="text-xl font-black text-brand-blue">$${p.discountPrice}</span>
+                    ${p.originalPrice > p.discountPrice ? `<span class="text-sm text-slate-400 line-through">$${p.originalPrice}</span>` : ''}
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border text-xs text-slate-700 whitespace-pre-line leading-relaxed">
+                    <strong class="block mb-1 text-slate-900">المواصفات والتفاصيل الكاملة:</strong>
+                    ${p.details || 'لا توجد تفاصيل إضافية مسجلة.'}
+                </div>
+                <button onclick="closeDetailsModal(); openBranchModal('${p.id}')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-sm"></i> الاستفسار عن هذا المنتج عبر الفروع
+                </button>
+            `;
+            const modal = document.getElementById('detailsModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeDetailsModal() {
+            document.getElementById('detailsModal').classList.remove('flex');
+            document.getElementById('detailsModal').classList.add('hidden');
+        }
+
         function openBranchModal(productId) {
             selectedProductForInquiry = allProducts.find(p => p.id === productId);
             if(selectedProductForInquiry) {
@@ -400,7 +543,7 @@
 
         function sendProductToBranch(branchPhone) {
             if(!selectedProductForInquiry) return;
-            const msg = encodeURIComponent(`مرحباً شركة الشبيب، أرغب بالاستفسار عن المنتج:\n- الاسم: ${selectedProductForInquiry.name}\n- التفاصيل: ${selectedProductForInquiry.details || 'لا توجد تفاصيل إضافية'}\n- السعر: $${selectedProductForInquiry.discountPrice}`);
+            const msg = encodeURIComponent(`مرحباً شركة الشبيب، أرغب بالاستفسار عن المنتج:\n- الاسم: ${selectedProductForInquiry.name}\n- السعر: $${selectedProductForInquiry.discountPrice}`);
             window.open(`https://wa.me/${branchPhone}?text=${msg}`, '_blank');
             closeBranchModal();
         }
@@ -410,17 +553,14 @@
         function setCategory(cat, btn) {
             currentCategory = cat;
             itemsToShow = 4;
-            
             document.querySelectorAll('.cat-btn').forEach(b => {
                 b.classList.remove('bg-brand-blue', 'text-white');
                 b.classList.add('bg-white', 'border', 'border-slate-200', 'text-slate-700');
             });
-            
             if(btn) {
                 btn.classList.remove('bg-white', 'border', 'border-slate-200', 'text-slate-700');
                 btn.classList.add('bg-brand-blue', 'text-white');
             }
-            
             renderProducts();
         }
 
