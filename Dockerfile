@@ -1,14 +1,11 @@
-# استخدام خادم Nginx الخفيف والكفء لتشغيل صفحات الويب الثابتة
+# استخدام خادم Nginx لتشغيل صفحات الويب الثابتة
 FROM nginx:alpine
 
-# نسخ ملف المتجر الرئيسي للزبائن إلى مسار العرض في الخادم
+# نسخ ملف المتجر الرئيسي للزبائن
 COPY index.html /usr/share/nginx/html/index.html
 
-# نسخ ملف لوحة التحكم المحمية
-COPY my-secret-admin.html /usr/share/nginx/html/my-secret-admin.html
-
-# إذا قمت برفع ملف اللوغو المحلي (logo.jpg) قم بإلغاء التفعيل عن السطر التالي:
-# COPY logo.jpg /usr/share/nginx/html/logo.jpg
+# نسخ ملف لوحة التحكم بالاسم الصحيح الذي قمت بإنشائه
+COPY My-secret-admin1.html /usr/share/nginx/html/My-secret-admin1.html
 
 # فتح المنفذ 80 ليعمل الموقع بشكل طبيعي
 EXPOSE 80
