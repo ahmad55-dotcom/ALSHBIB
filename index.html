@@ -101,7 +101,7 @@
                         <i class="fas fa-sun text-amber-400"></i> خيارات ذكية لمستقبل أفضل
                     </span>
                     <h1 class="text-3xl md:text-5xl font-black leading-tight text-white">
-                        حلول الطاقة الشمسية ومعدات <span class="text-amber-400">MUST</span> مع <span class="text-amber-400">مؤسسة الشبيب</span>
+                        حلول الطاقة الشمسية ومعدات <span class="text-amber-400">MUST</span> مع <span class="text-amber-400">شركة الشبيب</span>
                     </h1>
                     <p class="text-slate-300 text-base md:text-lg max-w-xl leading-relaxed">
                         نوفر لكم أفضل أنفرترات MUST العالمية، الألواح الشمسية عالية الكفاءة، والبطاريات بأفضل الأسعار والضمانات مع خدمة الاستشارات المباشرة.
@@ -221,7 +221,7 @@
                     <div class="w-10 h-8 rounded-lg bg-white p-0.5 flex items-center justify-center logo-glow">
                         <svg class="w-full h-full"><use href="#alshbib-logo-svg"/></svg>
                     </div>
-                    <h3 class="text-white font-bold text-base">مؤسسة الشبيب للطاقة الشمسية</h3>
+                    <h3 class="text-white font-bold text-base">شركة الشبيب للطاقة الشمسية</h3>
                 </div>
                 <p class="text-xs leading-relaxed text-slate-400">خيارات ذكية لمستقبل أفضل. توريد وتركيب كافة أنظمة الطاقة الشمسية ومعدات MUST الأصلية مع الضمان الفعلي.</p>
             </div>
@@ -233,7 +233,7 @@
                 </ul>
             </div>
             <div class="text-xs text-slate-500">
-                <p>© 2026 جميع الحقوق محفوظة لـ مؤسسة الشبيب للطاقة الشمسية (ALSHBIB).</p>
+                <p>© 2026 جميع الحقوق محفوظة لـ شركة الشبيب للطاقة الشمسية (ALSHBIB).</p>
             </div>
         </div>
     </footer>
@@ -285,7 +285,7 @@
 
             const visible = filtered.slice(0, itemsToShow);
             grid.innerHTML = visible.map(p => {
-                const msg = encodeURIComponent(`مرحباً مؤسسة الشبيب، أرغب بالاستفسار عن المنتج:\n- الاسم: ${p.name}\n- التفاصيل: ${p.details || 'لا توجد تفاصيل إضافية'}\n- السعر بعد الخصم: $${p.discountPrice}`);
+                const msg = encodeURIComponent(`مرحباً شركة الشبيب، أرغب بالاستفسار عن المنتج:\n- الاسم: ${p.name}\n- التفاصيل: ${p.details || 'لا توجد تفاصيل إضافية'}\n- السعر بعد الخصم: $${p.discountPrice}`);
                 return `
                     <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                         <div>
@@ -363,7 +363,7 @@
             const inv = document.getElementById('recInverter').innerText;
             const panels = document.getElementById('recPanels').innerText;
             const bat = document.getElementById('recBattery').innerText;
-            const msg = encodeURIComponent(`استفسار عن حاسبة أحمال الشبيب:\n- القدرة المطلوبة: ${watts} واط\n- الأنفرتر المقترح: ${inv}\n- الألواح: ${panels}\n- البطاريات: ${bat}`);
+            const msg = encodeURIComponent(`استفسار عن حاسبة أحمال شركة الشبيب:\n- القدرة المطلوبة: ${watts} واط\n- الأنفرتر المقترح: ${inv}\n- الألواح: ${panels}\n- البطاريات: ${bat}`);
             window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
         }
 
