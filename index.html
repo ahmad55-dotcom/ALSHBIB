@@ -239,10 +239,10 @@
         </div>
     </main>
 
-    <!-- Modal نافذة عرض التفاصيل الكاملة للمنتج -->
+    <!-- Modal نافذة عرض التفاصيل الكاملة للمنتج (مع الصور المتعددة) -->
     <div id="detailsModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeDetailsModal()" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600 bg-slate-100 w-8 h-8 rounded-full flex items-center justify-center">
+            <button onclick="closeDetailsModal()" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600 bg-slate-100 w-8 h-8 rounded-full flex items-center justify-center z-10">
                 <i class="fas fa-times"></i>
             </button>
             <div id="modalDetailsContent" class="space-y-4">
@@ -427,11 +427,18 @@
 
             const visible = filtered.slice(0, itemsToShow);
             grid.innerHTML = visible.map(p => {
+                // جلب الصورة الرئيسية أو أول صورة من المصفوفة
+                const mainImg = p.image || (p.images && p.images.length > 0 ? p.images[0] : 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=600&q=80');
+                
                 return `
                     <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                         <div>
-                            <div class="relative mb-3">
-                                <img src="${p.image}" class="w-full h-44 object-cover rounded-xl">
+                            <!-- تم جعل الصورة قابلة للنقر لعرض التفاصيل والصور المتعددة -->
+                            <div class="relative mb-3 cursor-pointer group" onclick="openDetailsModal('${p.id}')">
+                                <img src="${mainImg}" class="w-full h-44 object-cover rounded-xl group-hover:opacity-95 transition">
+                                <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition rounded-xl flex items-center justify-center">
+                                    <span class="bg-black/60 text-white text-[11px] px-2.5 py-1 rounded-lg font-bold"><i class="fas fa-search-plus"></i> اضغط للعرض</span>
+                                </div>
                                 ${p.badge ? `<span class="absolute top-2 right-2 bg-amber-500 text-slate-950 font-black text-[10px] px-2.5 py-1 rounded-md">${p.badge}</span>` : ''}
                             </div>
                             <h3 class="font-bold text-slate-900 text-sm mb-1 line-clamp-2">${p.name}</h3>
@@ -458,13 +465,34 @@
             else loadMoreBtn.classList.add('hidden');
         }
 
+        // نافذة عرض التفاصيل الكاملة مع معرض الصور المتعددة
         function openDetailsModal(productId) {
             const p = allProducts.find(item => item.id === productId);
             if (!p) return;
+
+            // استخراج قائمة الصور (سواء كانت مصفوفة images أو صورة مفردة image)
+            const imagesList = p.images && p.images.length > 0 ? p.images : [p.image || 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=600&q=80'];
+
             const content = document.getElementById('modalDetailsContent');
             content.innerHTML = `
-                <img src="${p.image}" class="w-full h-60 object-cover rounded-2xl border">
-                <h3 class="text-lg font-bold text-slate-900">${p.name}</h3>
+                <!-- الصورة الرئيسية المعروضة حالياً -->
+                <div class="relative">
+                    <img id="mainModalImage" src="${imagesList[0]}" class="w-full h-64 sm:h-72 object-cover rounded-2xl border shadow-md transition-all duration-300">
+                </div>
+                
+                <!-- مصغرات الصور المتعددة (إذا وُجد أكثر من صورة) -->
+                ${imagesList.length > 1 ? `
+                    <div>
+                        <p class="text-[11px] font-bold text-slate-500 mb-1.5">صور المنتج (${imagesList.length}): اضغط على الصورة للعرض</p>
+                        <div class="flex gap-2 overflow-x-auto py-1">
+                            ${imagesList.map((img, idx) => `
+                                <img src="${img}" onclick="document.getElementById('mainModalImage').src='${img}'" class="w-16 h-16 object-cover rounded-xl border-2 cursor-pointer hover:border-brand-blue hover:scale-105 transition flex-shrink-0 shadow-sm">
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+
+                <h3 class="text-lg font-bold text-slate-900 mt-2">${p.name}</h3>
                 <div class="flex items-center gap-2">
                     <span class="text-xl font-black text-brand-blue">$${p.discountPrice}</span>
                     ${p.originalPrice > p.discountPrice ? `<span class="text-sm text-slate-400 line-through">$${p.originalPrice}</span>` : ''}
@@ -473,7 +501,7 @@
                     <strong class="block mb-1 text-slate-900">المواصفات والتفاصيل الكاملة:</strong>
                     ${p.details || 'لا توجد تفاصيل إضافية مسجلة.'}
                 </div>
-                <button onclick="closeDetailsModal(); openBranchModal('${p.id}')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2">
+                <button onclick="closeDetailsModal(); openBranchModal('${p.id}')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-sm">
                     <i class="fab fa-whatsapp text-sm"></i> الاستفسار عن هذا المنتج عبر الفروع
                 </button>
             `;
