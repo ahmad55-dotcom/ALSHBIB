@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مؤسسة الشبيب | ALSHBIB - أنظمة الطاقة الشمسية ومعدات MUST</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -22,12 +25,12 @@
     <style>
         body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }
         .logo-glow {
-            filter: drop-shadow(0 0 10px rgba(255, 184, 0, 0.6)) drop-shadow(0 0 20px rgba(11, 75, 139, 0.4));
+            filter: drop-shadow(0 0 10px rgba(255, 184, 0, 0.65)) drop-shadow(0 0 20px rgba(11, 75, 139, 0.4));
             transition: all 0.3s ease;
         }
         .logo-glow:hover {
-            filter: drop-shadow(0 0 15px rgba(255, 184, 0, 0.9)) drop-shadow(0 0 30px rgba(11, 75, 139, 0.7));
-            transform: scale(1.02);
+            filter: drop-shadow(0 0 16px rgba(255, 184, 0, 0.95)) drop-shadow(0 0 28px rgba(11, 75, 139, 0.7));
+            transform: scale(1.03);
         }
         .pulse-whatsapp { animation: pulse-green 2s infinite; }
         @keyframes pulse-green {
@@ -43,7 +46,7 @@
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="p-1 rounded-2xl bg-slate-900/5 backdrop-blur-sm border border-amber-400/30 shadow-inner">
+                <div class="p-1 rounded-2xl bg-white shadow-sm border border-amber-300/40">
                     <img src="https://i.ibb.co/L8vJ9Dk/ALSHBIB-LOGO.jpg" alt="ALSHBIB Logo" class="h-12 w-auto object-contain rounded-xl logo-glow">
                 </div>
                 <div>
@@ -65,8 +68,43 @@
         </div>
     </header>
 
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-brand-darkBlue via-brand-blue to-slate-900 text-white py-16 md:py-24 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-center md:text-right">
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30 text-xs font-bold">
+                        <i class="fas fa-sun text-amber-400"></i> خيارات ذكية لمستقبل أفضل
+                    </span>
+                    <h1 class="text-3xl md:text-5xl font-black leading-tight text-white">
+                        حلول الطاقة الشمسية ومعدات <span class="text-amber-400">MUST</span> مع <span class="text-amber-400">مؤسسة الشبيب</span>
+                    </h1>
+                    <p class="text-slate-300 text-base md:text-lg max-w-xl leading-relaxed">
+                        نوفر لكم أفضل أنفرترات MUST العالمية، الألواح الشمسية عالية الكفاءة، والبطاريات بأفضل الأسعار والضمانات مع خدمة الاستشارات المباشرة.
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center md:justify-start pt-2">
+                        <a href="#products" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-7 py-3.5 rounded-xl transition shadow-lg text-sm flex items-center gap-2">
+                            <span>تصفح المنتجات والعروض</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                        <a href="#calculator" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-7 py-3.5 rounded-xl border border-white/20 transition text-sm flex items-center gap-2">
+                            <i class="fas fa-calculator"></i>
+                            <span>حاسبة الأحمال</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:flex justify-center">
+                    <div class="p-4 bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl">
+                        <img src="https://i.ibb.co/L8vJ9Dk/ALSHBIB-LOGO.jpg" alt="ALSHBIB Solar Logo" class="rounded-2xl max-h-72 w-auto logo-glow object-contain bg-white p-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Main Products Section -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <main id="products" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
             <div class="w-full md:w-96 relative">
                 <input type="text" id="searchInput" oninput="renderProducts()" placeholder="ابحث عن أنفرتر، لوح شمسي، بطارية..." class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 pr-10 text-sm focus:outline-none focus:border-brand-blue shadow-sm">
@@ -149,6 +187,29 @@
         </a>
     </div>
 
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                    <img src="https://i.ibb.co/L8vJ9Dk/ALSHBIB-LOGO.jpg" alt="ALSHBIB Logo" class="h-10 w-auto rounded-lg bg-white p-1 logo-glow">
+                    <h3 class="text-white font-bold text-base">مؤسسة الشبيب للطاقة الشمسية</h3>
+                </div>
+                <p class="text-xs leading-relaxed text-slate-400">خيارات ذكية لمستقبل أفضل. توريد وتركيب كافة أنظمة الطاقة الشمسية ومعدات MUST الأصلية مع الضمان الفعلي.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">تواصل معنا</h4>
+                <ul class="space-y-2 text-xs">
+                    <li class="flex items-center gap-2"><i class="fab fa-whatsapp text-emerald-400"></i> <a href="https://wa.me/905368414835" target="_blank" class="hover:text-white">+90 536 841 48 35</a></li>
+                    <li class="flex items-center gap-2"><i class="fab fa-facebook text-blue-400"></i> <a href="https://www.facebook.com/share/1DcTKhPZTJ/" target="_blank" class="hover:text-white">صفحتنا الرسمية على فيسبوك</a></li>
+                </ul>
+            </div>
+            <div class="text-xs text-slate-500">
+                <p>© 2026 جميع الحقوق محفوظة لـ مؤسسة الشبيب للطاقة الشمسية (ALSHBIB).</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
         const phone = "905368414835";
         let currentCategory = 'all';
@@ -183,12 +244,7 @@
                         <div>
                             <div class="relative mb-3">
                                 <img src="${p.image}" class="w-full h-44 object-cover rounded-xl">
-                                ${p.badge ? `<span class="absolute top-2 right-2 bg-amber-500 text-slate-950 font-black text-[10px] px-2.5 py-1 rounded-md">${p.badge}</span>` : ''}
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-sm mb-2 line-clamp-2">${p.name}</h3>
-                            <div class="flex items-center gap-2 mb-4">
-                                <span class="text-lg font-extrabold text-brand-blue">$${p.discountPrice}</span>
-                                ${p.originalPrice > p.discountPrice ? `<span class="text-xs text-slate-400 line-through">$${p.originalPrice}</span>` : ''}
+                                ${p.badge ? `<span class="absolute top-2 right-2 bg-amber-500 text-slate-950 font-black text-[10px] px-2.5 py-1 rounded-md">${p.badge}</span>` : ''} </div> <h3 class="font-bold text-slate-900 text-sm mb-2 line-clamp-2">${p.name}</h3> <div class="flex items-center gap-2 mb-4"> <span class="text-lg font-extrabold text-brand-blue">$${p.discountPrice}</span> ${p.originalPrice > p.discountPrice ? `<span class="text-xs text-slate-400 line-through">$${p.originalPrice}</span>` : ''}
                             </div>
                         </div>
                         <a href="https://wa.me/${phone}?text=${msg}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl transition text-xs flex items-center justify-center gap-2 shadow-sm">
