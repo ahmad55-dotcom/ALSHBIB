@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مؤسسة الشبيب | ALSHBIB - أنظمة الطاقة الشمسية ومعدات MUST</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0B4B8B',
+                            darkBlue: '#062B52',
+                            yellow: '#FFB800',
+                            accent: '#FF7A00',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }
+        .pulse-whatsapp { animation: pulse-green 2s infinite; }
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-amber-100 selection:text-amber-900">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-amber-50 p-1.5 rounded-xl border border-amber-200/50">
+                    <img src="https://i.ibb.co/L8vJ9Dk/ALSHBIB-LOGO.jpg" alt="ALSHBIB Logo" class="h-12 w-auto object-contain rounded-lg">
+                </div>
+                <div>
+                    <h1 class="text-xl font-black tracking-tight text-brand-darkBlue leading-none">الشبيب <span class="text-amber-500">ALSHBIB</span></h1>
+                    <p class="text-[10px] font-medium text-slate-500 tracking-wider uppercase mt-1">Smart Choices for a Better Future</p>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 font-semibold text-slate-600">
+                <a href="#products" class="hover:text-brand-blue transition">المنتجات</a>
+                <a href="#categories" class="hover:text-brand-blue transition">التصنيفات</a>
+                <a href="#calculator" class="hover:text-brand-blue transition">حاسبة الأحمال</a>
+                <a href="#about" class="hover:text-brand-blue transition">عن المؤسسة</a>
+            </div>
+
+            <a href="https://wa.me/905368414835" target="_blank" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl transition shadow-sm text-sm">
+                <i class="fab font-bold fa-whatsapp text-lg"></i>
+                <span>تواصل معنا</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-brand-darkBlue via-brand-blue to-slate-900 text-white py-16 md:py-24 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-center md:text-right">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30 text-xs font-bold">
+                        <i class="fas fa-bolt"></i> الوكيل المعتمد لمعدات MUST
+                    </span>
+                    <h1 class="text-3xl md:text-5xl font-black leading-tight text-white">
+                        حلول الطاقة الشمسية الذكية لمستقبل أفضل مع <span class="text-amber-400">مؤسسة الشبيب</span>
+                    </h1>
+                    <p class="text-slate-300 text-base md:text-lg max-w-xl leading-relaxed">
+                        نوفر لكم أفضل أنفرترات MUST العالمية، الألواح الشمسية عالية الكفاءة، والبطاريات بأفضل الأسعار والضمانات مع خدمة الاستشارات المباشرة.
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center md:justify-start pt-2">
+                        <a href="#products" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-7 py-3.5 rounded-xl transition shadow-lg text-sm flex items-center gap-2">
+                            <span>تصفح المنتجات والعروض</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                        <a href="#calculator" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-7 py-3.5 rounded-xl border border-white/20 transition text-sm flex items-center gap-2">
+                            <i class="fas fa-calculator"></i>
+                            <span>حاسبة أحمال المنظومة</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block relative">
+                    <div class="relative mx-auto max-w-md bg-white/10 backdrop-blur-md p-4 rounded-3xl border border-white/20 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1508873696983-2df515122519?auto=format&fit=crop&w=800&q=80" alt="Solar Energy" class="rounded-2xl object-cover shadow-lg w-full h-80">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Store Section -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Search & Filter Bar -->
+        <div class="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
+            <div class="w-full md:w-96 relative">
+                <input type="text" id="searchInput" oninput="filterProducts()" placeholder="ابحث عن أنفرتر، لوح شمسي، بطارية..." class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 pr-10 text-sm focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 shadow-sm">
+                <i class="fas fa-search absolute left-3 top-3.5 text-slate-400"></i>
+            </div>
+            <div id="categoryFilters" class="flex flex-wrap gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+                <button onclick="setCategory('all')" class="cat-btn active bg-brand-blue text-white px-4 py-2 rounded-xl text-xs font-bold transition">الكل</button>
+                <button onclick="setCategory('inverter')" class="cat-btn bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-xs font-bold transition">أنفرترات MUST</button>
+                <button onclick="setCategory('panel')" class="cat-btn bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-xs font-bold transition">ألواح شمسية</button>
+                <button onclick="setCategory('battery')" class="cat-btn bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-xs font-bold transition">بطاريات</button>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+
+        <!-- Load More Button -->
+        <div id="loadMoreContainer" class="text-center mt-12 hidden">
+            <button onclick="loadMoreProducts()" class="bg-white border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white font-bold px-8 py-3 rounded-xl transition shadow-sm text-sm inline-flex items-center gap-2">
+                <span>عرض المزيد من المنتجات</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </main>
+
+    <!-- Floating WhatsApp Button & Popup -->
+    <div class="fixed bottom-6 left-6 z-50 flex flex-col items-start gap-3">
+        <div id="waPopup" class="bg-white rounded-2xl p-3.5 shadow-xl border border-slate-100 max-w-xs flex items-center justify-between gap-3 animate-bounce">
+            <div>
+                <h4 class="font-bold text-slate-900 text-xs">ALSHBIB</h4>
+                <p class="text-[11px] text-slate-500 font-medium">تحدث معنا مباشرة عبر واتساب</p>
+            </div>
+            <button onclick="document.getElementById('waPopup').remove()" class="text-slate-400 hover:text-slate-600 text-xs">✕</button>
+        </div>
+        <a href="https://wa.me/905368414835" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl text-2xl pulse-whatsapp transition">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="space-y-3">
+                <h3 class="text-white font-bold text-lg">مؤسسة الشبيب (ALSHBIB)</h3>
+                <p class="text-xs leading-relaxed text-slate-400">خيارات ذكية لمستقبل أفضل. توريد وتركيب كافة أنظمة الطاقة الشمسية ومعدات MUST الأصلية مع الضمان الفعلي.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">تواصل معنا</h4>
+                <ul class="space-y-2 text-xs">
+                    <li class="flex items-center gap-2"><i class="fab fa-whatsapp text-emerald-400"></i> <a href="https://wa.me/905368414835" target="_blank" class="hover:text-white">+90 536 841 48 35</a></li>
+                    <li class="flex items-center gap-2"><i class="fab fa-facebook text-blue-400"></i> <a href="https://www.facebook.com/share/1DcTKhPZTJ/" target="_blank" class="hover:text-white">صفحتنا على فيسبوك</a></li>
+                </ul>
+            </div>
+            <div class="text-xs text-slate-500">
+                <p>© 2026 جميع الحقوق محفوظة لـ مؤسسة الشبيب للطاقة الشمسية.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const phone = "905368414835";
+        let currentCategory = 'all';
+        let itemsToShow = 4;
+
+        // Fetch products from localStorage (Managed by Admin Panel)
+        function getProducts() {
+            const saved = localStorage.getItem('alshbib_products');
+            if (saved) return JSON.parse(saved);
+            
+            // Default sample products
+            return [
+                { id: 1, name: "أنفرتر MUST هجين 5.5 كيلو واط (5500W 48V)", category: "inverter", originalPrice: 480, discountPrice: 420, image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=600&q=80", badge: "الأكثر مبيعاً" },
+                { id: 2, name: "لوح طاقة شمسية 580 واط N-Type Monocrystalline", category: "panel", originalPrice: 110, discountPrice: 95, image: "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=600&q=80", badge: "كفاءة عالية" },
+                { id: 3, name: "بطارية ليتيوم MUST LiFePO4 100Ah 48V", category: "battery", originalPrice: 1350, discountPrice: 1190, image: "https://images.unsplash.com/photo-1558441719-670b357029bc?auto=format&fit=crop&w=600&q=80", badge: "ضمان 5 سنوات" },
+                { id: 4, name: "أنفرتر MUST ذكي 3 كيلو واط (3000W 24V)", category: "inverter", originalPrice: 320, discountPrice: 285, image: "https://images.unsplash.com/photo-1548611716-30029825968b?auto=format&fit=crop&w=600&q=80", badge: "عرض خاص" },
+                { id: 5, name: "لوح طاقة شمسية 550 واط Bifacial مزدوج الوجه", category: "panel", originalPrice: 105, discountPrice: 92, image: "https://images.unsplash.com/photo-1508873696983-2df515122519?auto=format&fit=crop&w=600&q=80", badge: "جديد" }
+            ];
+        }
+
+        function renderProducts() {
+            const products = getProducts();
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const grid = document.getElementById('productsGrid');
+
+            const filtered = products.filter(p => {
+                const matchCat = currentCategory === 'all' || p.category === currentCategory;
+                const matchSearch = p.name.toLowerCase().includes(search);
+                return matchCat && matchSearch;
+            });
+
+            const visible = filtered.slice(0, itemsToShow);
+            grid.innerHTML = visible.map(p => {
+                const msg = encodeURIComponent(`مرحباً مؤسسة الشبيب، أرغب بالاستفسار عن المنتج:\n- الاسم: ${p.name}\n- السعر بعد الخصم: $${p.discountPrice}`);
+                return `
+                    <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="relative mb-3">
+                                <img src="${p.image}" class="w-full h-44 object-cover rounded-xl">
+                                ${p.badge ? `<span class="absolute top-2 right-2 bg-amber-500 text-slate-950 font-black text-[10px] px-2.5 py-1 rounded-md">${p.badge}</span>` : ''}
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-sm mb-2 line-clamp-2">${p.name}</h3>
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="text-lg font-extrabold text-brand-blue">$${p.discountPrice}</span>
+                                ${p.originalPrice > p.discountPrice ? `<span class="text-xs text-slate-400 line-through">$${p.originalPrice}</span>` : ''}
+                            </div>
+                        </div>
+                        <a href="https://wa.me/${phone}?text=${msg}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl transition text-xs flex items-center justify-center gap-2 shadow-sm">
+                            <i class="fab fa-whatsapp text-sm"></i>
+                            <span>استفسار عبر الواتساب</span>
+                        </a>
+                    </div>
+                `;
+            }).join('');
+
+            const loadMoreBtn = document.getElementById('loadMoreContainer');
+            if (filtered.length > itemsToShow) {
+                loadMoreBtn.classList.remove('hidden');
+            } else {
+                loadMoreBtn.classList.add('hidden');
+            }
+        }
+
+        function loadMoreProducts() {
+            itemsToShow += 4;
+            renderProducts();
+        }
+
+        function setCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('bg-brand-blue', 'text-white'));
+            renderProducts();
+        }
+
+        function filterProducts() {
+            renderProducts();
+        }
+
+        document.addEventListener('DOMContentLoaded', renderProducts);
+    </script>
+</body>
+</html>
+ 
