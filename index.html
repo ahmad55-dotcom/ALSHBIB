@@ -133,11 +133,12 @@
                 <input type="text" id="searchInput" oninput="renderProducts()" placeholder="ابحث عن أنفرتر، لوح شمسي، بطارية..." class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 pr-10 text-sm focus:outline-none focus:border-brand-blue shadow-sm">
                 <i class="fas fa-search absolute left-3 top-3.5 text-slate-400"></i>
             </div>
+            <!-- Category Filters with Active Styling -->
             <div id="categoryFilters" class="flex flex-wrap gap-2 w-full md:w-auto">
-                <button onclick="setCategory('all')" class="cat-btn active bg-brand-blue text-white px-4 py-2 rounded-xl text-xs font-bold transition">الكل</button>
-                <button onclick="setCategory('inverter')" class="cat-btn bg-white border border-slate-200 text-slate-700 px-4 py-2 rounded-xl text-xs font-bold transition">أنفرترات MUST</button>
-                <button onclick="setCategory('panel')" class="cat-btn bg-white border border-slate-200 text-slate-700 px-4 py-2 rounded-xl text-xs font-bold transition">ألواح شمسية</button>
-                <button onclick="setCategory('battery')" class="cat-btn bg-white border border-slate-200 text-slate-700 px-4 py-2 rounded-xl text-xs font-bold transition">بطاريات</button>
+                <button onclick="setCategory('all', this)" class="cat-btn bg-brand-blue text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">الكل</button>
+                <button onclick="setCategory('inverter', this)" class="cat-btn bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">أنفرترات MUST</button>
+                <button onclick="setCategory('panel', this)" class="cat-btn bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">ألواح شمسية</button>
+                <button onclick="setCategory('battery', this)" class="cat-btn bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">بطاريات</button>
             </div>
         </div>
 
@@ -257,11 +258,12 @@
         let itemsToShow = 4;
 
         function listenToProducts() {
-            db.collection("products").orderBy("createdAt", "desc").onSnapshot(snapshot => {
+            db.collection("products").onSnapshot(snapshot => {
                 allProducts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 renderProducts();
             }, error => {
                 console.error("Firestore Error:", error);
+                document.getElementById('productsGrid').innerHTML = `<div class="col-span-full text-center py-12 text-red-500 font-bold text-sm">خطأ في الاتصال بقاعدة البيانات السحابية.</div>`;
             });
         }
 
@@ -276,7 +278,7 @@
             });
 
             if(filtered.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400 font-bold text-sm">لا توجد منتجات حالياً في السحابة.</div>`;
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500 font-bold text-sm bg-white rounded-2xl border border-slate-100 shadow-sm p-8">لا توجد منتجات مضافة في هذا التصنيف حالياً. قم بإضافة منتجات من لوحة التحكم!</div>`;
                 document.getElementById('loadMoreContainer').classList.add('hidden');
                 return;
             }
@@ -289,7 +291,13 @@
                         <div>
                             <div class="relative mb-3">
                                 <img src="${p.image}" class="w-full h-44 object-cover rounded-xl">
-                                ${p.badge ? `<span class="absolute top-2 right-2 bg-amber-500 text-slate-950 font-black text-[10px] px-2.5 py-1 rounded-md">${p.badge}</span>` : ''} </div> <h3 class="font-bold text-slate-900 text-sm mb-1 line-clamp-2">${p.name}</h3> <p class="text-[11px] text-slate-500 mb-3 line-clamp-2">${p.details \vert{}\vert{} ''}</p> <div class="flex items-center gap-2 mb-4"> <span class="text-lg font-extrabold text-brand-blue">$${p.discountPrice}</span> ${p.originalPrice > p.discountPrice ? `<span class="text-xs text-slate-400 line-through">$${p.originalPrice}</span>` : ''}
+                                ${p.badge ? `<span class="absolute top-2 right-2 bg-amber-500 text-slate-950 font-black text-[10px] px-2.5 py-1 rounded-md">${p.badge}</span>` : ''}
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-sm mb-1 line-clamp-2">${p.name}</h3>
+                            <p class="text-[11px] text-slate-500 mb-3 line-clamp-2">${p.details || ''}</p>
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="text-lg font-extrabold text-brand-blue">$${p.discountPrice}</span>
+                                ${p.originalPrice > p.discountPrice ? `<span class="text-xs text-slate-400 line-through">$${p.originalPrice}</span>` : ''}
                             </div>
                         </div>
                         <a href="https://wa.me/${phone}?text=${msg}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl transition text-xs flex items-center justify-center gap-2 shadow-sm">
@@ -306,7 +314,26 @@
         }
 
         function loadMoreProducts() { itemsToShow += 4; renderProducts(); }
-        function setCategory(cat) { currentCategory = cat; renderProducts(); }
+        
+        // Category Selection with Color Change
+        function setCategory(cat, btn) {
+            currentCategory = cat;
+            itemsToShow = 4;
+            
+            // Remove active style from all buttons
+            document.querySelectorAll('.cat-btn').forEach(b => {
+                b.classList.remove('bg-brand-blue', 'text-white');
+                b.classList.add('bg-white', 'border', 'border-slate-200', 'text-slate-700');
+            });
+            
+            // Add active style to clicked button
+            if(btn) {
+                btn.classList.remove('bg-white', 'border', 'border-slate-200', 'text-slate-700');
+                btn.classList.add('bg-brand-blue', 'text-white');
+            }
+            
+            renderProducts();
+        }
 
         function applyPreset() {
             const val = document.getElementById('calcPreset').value;
