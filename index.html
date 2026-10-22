@@ -33,6 +33,15 @@
             filter: drop-shadow(0 0 8px rgba(255, 184, 0, 0.7)) drop-shadow(0 0 16px rgba(11, 75, 139, 0.4));
             transition: all 0.3s ease;
         }
+        /* تأثير الإنارة الخارجية للأزرار */
+        .branch-glow {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.35), inset 0 0 6px rgba(16, 185, 129, 0.2);
+            transition: all 0.3s ease;
+        }
+        .branch-glow:hover {
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.7), inset 0 0 10px rgba(16, 185, 129, 0.4);
+            transform: translateY(-2px);
+        }
         .pulse-whatsapp { animation: pulse-green 2s infinite; }
         @keyframes pulse-green {
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
@@ -49,27 +58,42 @@
         <span>مستعدون لتنفيذ كافة المشاريع الصناعية والتجارية والمنزلية</span>
     </div>
 
-    <!-- شريط الفروع والتواصل -->
-    <div class="bg-slate-900 text-white py-2.5 px-4 border-b border-slate-800 text-xs z-40 relative">
+    <!-- شريط الفروع والتواصل مع إنارة وتصميم راقي للأزرار -->
+    <div class="bg-slate-900 text-white py-3 px-4 border-b border-slate-800 text-xs z-40 relative">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-3 sm:gap-6">
             <span class="font-bold text-amber-400 flex items-center gap-1.5"><i class="fas fa-code-branch"></i> تواصل مع فروعنا:</span>
             
-            <a href="https://wa.me/963969018173" target="_blank" class="bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg border border-slate-700 flex items-center gap-2 transition shadow-sm">
-                <span class="font-bold">فرع سرمدا</span>
-                <span class="text-[10px] text-slate-400 dir-ltr">+963 969 018 173</span>
-                <i class="fab fa-whatsapp text-emerald-400 text-sm"></i>
+            <!-- فرع سرمدا -->
+            <a href="https://wa.me/963969018173" target="_blank" class="branch-glow bg-slate-800 hover:bg-slate-700 px-3.5 py-2 rounded-xl border border-emerald-500/40 flex items-center gap-2.5 transition">
+                <div class="w-7 h-7 bg-emerald-500/20 text-emerald-400 rounded-lg flex items-center justify-center border border-emerald-500/30">
+                    <i class="fab fa-whatsapp text-sm"></i>
+                </div>
+                <div class="flex flex-col text-right">
+                    <span class="font-bold text-amber-300 text-xs">فرع سرمدا</span>
+                    <span class="text-[10px] text-slate-300 dir-ltr tracking-wide">+963 969 018 173</span>
+                </div>
             </a>
 
-            <a href="https://wa.me/963952333147" target="_blank" class="bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg border border-slate-700 flex items-center gap-2 transition shadow-sm">
-                <span class="font-bold">فرع داريا</span>
-                <span class="text-[10px] text-slate-400 dir-ltr">+963 952 333 147</span>
-                <i class="fab fa-whatsapp text-emerald-400 text-sm"></i>
+            <!-- فرع داريا -->
+            <a href="https://wa.me/963952333147" target="_blank" class="branch-glow bg-slate-800 hover:bg-slate-700 px-3.5 py-2 rounded-xl border border-emerald-500/40 flex items-center gap-2.5 transition">
+                <div class="w-7 h-7 bg-emerald-500/20 text-emerald-400 rounded-lg flex items-center justify-center border border-emerald-500/30">
+                    <i class="fab fa-whatsapp text-sm"></i>
+                </div>
+                <div class="flex flex-col text-right">
+                    <span class="font-bold text-amber-300 text-xs">فرع داريا</span>
+                    <span class="text-[10px] text-slate-300 dir-ltr tracking-wide">+963 952 333 147</span>
+                </div>
             </a>
 
-            <a href="https://wa.me/963986574652" target="_blank" class="bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg border border-slate-700 flex items-center gap-2 transition shadow-sm">
-                <span class="font-bold">فرع الزبداني</span>
-                <span class="text-[10px] text-slate-400 dir-ltr">+963 986 574 652</span>
-                <i class="fab fa-whatsapp text-emerald-400 text-sm"></i>
+            <!-- فرع الزبداني -->
+            <a href="https://wa.me/963986574652" target="_blank" class="branch-glow bg-slate-800 hover:bg-slate-700 px-3.5 py-2 rounded-xl border border-emerald-500/40 flex items-center gap-2.5 transition">
+                <div class="w-7 h-7 bg-emerald-500/20 text-emerald-400 rounded-lg flex items-center justify-center border border-emerald-500/30">
+                    <i class="fab fa-whatsapp text-sm"></i>
+                </div>
+                <div class="flex flex-col text-right">
+                    <span class="font-bold text-amber-300 text-xs">فرع الزبداني</span>
+                    <span class="text-[10px] text-slate-300 dir-ltr tracking-wide">+963 986 574 652</span>
+                </div>
             </a>
         </div>
     </div>
@@ -162,7 +186,7 @@
             <!-- Category Filters -->
             <div id="categoryFilters" class="flex flex-wrap gap-2 w-full md:w-auto">
                 <button onclick="setCategory('all', this)" class="cat-btn bg-brand-blue text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">الكل</button>
-                <button onclick="setCategory('inverter', this)" class="cat-btn bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">أنفرترات </button>
+                <button onclick="setCategory('inverter', this)" class="cat-btn bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">أنفرترات</button>
                 <button onclick="setCategory('panel', this)" class="cat-btn bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">ألواح شمسية</button>
                 <button onclick="setCategory('battery', this)" class="cat-btn bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">بطاريات</button>
             </div>
@@ -180,59 +204,62 @@
         </div>
     </main>
 
-    <!-- Modal نافذة اختيار الفرع للاستفسار -->
-    <div id="branchModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <!-- Modal نافذة اختيار الفرع للاستفسار مع أزرار مضيئة وأنيقة -->
+    <div id="branchModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 relative animate-in fade-in zoom-in duration-200">
             <button onclick="closeBranchModal()" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600 bg-slate-100 hover:bg-slate-200 w-8 h-8 rounded-full flex items-center justify-center transition">
                 <i class="fas fa-times"></i>
             </button>
             
             <div class="text-center mb-6">
-                <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-xl">
+                <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
                     <i class="fab fa-whatsapp"></i>
                 </div>
-                <h3 class="font-extrabold text-slate-900 text-lg">اختر الفرع للاستفسار</h3>
-                <p id="modalProductName" class="text-xs text-brand-blue font-bold mt-1 line-clamp-1"></p>
+                <h3 class="font-extrabold text-slate-900 text-lg">اختر الفرع المناسب للاستفسار</h3>
+                <p id="modalProductName" class="text-xs text-brand-blue font-bold mt-1.5 line-clamp-1 bg-blue-50 py-1.5 px-3 rounded-lg border border-blue-100"></p>
             </div>
 
             <div class="space-y-3">
-                <button onclick="sendProductToBranch('963969018173')" class="w-full p-3.5 bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 rounded-2xl flex items-center justify-between transition group">
+                <!-- فرع سرمدا -->
+                <button onclick="sendProductToBranch('963969018173')" class="w-full p-3.5 bg-slate-900 hover:bg-slate-800 text-white border border-emerald-500/50 rounded-2xl flex items-center justify-between transition group branch-glow">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold text-sm shadow-sm group-hover:scale-105 transition">
-                            <i class="fas fa-building"></i>
+                        <div class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold text-base shadow-md group-hover:scale-105 transition">
+                            <i class="fab fa-whatsapp"></i>
                         </div>
                         <div class="text-right">
-                            <h4 class="font-bold text-slate-900 text-sm">فرع سرمدا</h4>
-                            <p class="text-[11px] text-slate-500 dir-ltr">+963 969 018 173</p>
+                            <h4 class="font-bold text-amber-400 text-sm">فرع سرمدا</h4>
+                            <p class="text-[11px] text-slate-300 dir-ltr">+963 969 018 173</p>
                         </div>
                     </div>
-                    <i class="fab fa-whatsapp text-emerald-600 text-xl"></i>
+                    <span class="text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-xl font-bold group-hover:bg-emerald-500 transition">مراسلة</span>
                 </button>
 
-                <button onclick="sendProductToBranch('963952333147')" class="w-full p-3.5 bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 rounded-2xl flex items-center justify-between transition group">
+                <!-- فرع داريا -->
+                <button onclick="sendProductToBranch('963952333147')" class="w-full p-3.5 bg-slate-900 hover:bg-slate-800 text-white border border-emerald-500/50 rounded-2xl flex items-center justify-between transition group branch-glow">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold text-sm shadow-sm group-hover:scale-105 transition">
-                            <i class="fas fa-building"></i>
+                        <div class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold text-base shadow-md group-hover:scale-105 transition">
+                            <i class="fab fa-whatsapp"></i>
                         </div>
                         <div class="text-right">
-                            <h4 class="font-bold text-slate-900 text-sm">فرع داريا</h4>
-                            <p class="text-[11px] text-slate-500 dir-ltr">+963 952 333 147</p>
+                            <h4 class="font-bold text-amber-400 text-sm">فرع داريا</h4>
+                            <p class="text-[11px] text-slate-300 dir-ltr">+963 952 333 147</p>
                         </div>
                     </div>
-                    <i class="fab fa-whatsapp text-emerald-600 text-xl"></i>
+                    <span class="text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-xl font-bold group-hover:bg-emerald-500 transition">مراسلة</span>
                 </button>
 
-                <button onclick="sendProductToBranch('963986574652')" class="w-full p-3.5 bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 rounded-2xl flex items-center justify-between transition group">
+                <!-- فرع الزبداني -->
+                <button onclick="sendProductToBranch('963986574652')" class="w-full p-3.5 bg-slate-900 hover:bg-slate-800 text-white border border-emerald-500/50 rounded-2xl flex items-center justify-between transition group branch-glow">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold text-sm shadow-sm group-hover:scale-105 transition">
-                            <i class="fas fa-building"></i>
+                        <div class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold text-base shadow-md group-hover:scale-105 transition">
+                            <i class="fab fa-whatsapp"></i>
                         </div>
                         <div class="text-right">
-                            <h4 class="font-bold text-slate-900 text-sm">فرع الزبداني</h4>
-                            <p class="text-[11px] text-slate-500 dir-ltr">+963 986 574 652</p>
+                            <h4 class="font-bold text-amber-400 text-sm">فرع الزبداني</h4>
+                            <p class="text-[11px] text-slate-300 dir-ltr">+963 986 574 652</p>
                         </div>
                     </div>
-                    <i class="fab fa-whatsapp text-emerald-600 text-xl"></i>
+                    <span class="text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-xl font-bold group-hover:bg-emerald-500 transition">مراسلة</span>
                 </button>
             </div>
         </div>
@@ -340,7 +367,7 @@
                                 ${p.originalPrice > p.discountPrice ? `<span class="text-xs text-slate-400 line-through">$${p.originalPrice}</span>` : ''}
                             </div>
                         </div>
-                        <button onclick="openBranchModal('${p.id}')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl transition text-xs flex items-center justify-center gap-2 shadow-sm">
+                        <button onclick="openBranchModal('${p.id}')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl transition text-xs flex items-center justify-center gap-2 shadow-sm branch-glow">
                             <i class="fab fa-whatsapp text-sm"></i>
                             <span>استفسار عبر الواتساب</span>
                         </button>
